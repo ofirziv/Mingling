@@ -1,0 +1,25 @@
+{% load staticfiles %}
+     
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+            {% for img_path in img_paths%}
+            <div class="col-4">
+              <div class="card mb-4 shadow-sm">
+                <img class="btn card-img-top mx-lg" src="{% static '' %}{{ img_path }}" style="height: 100%; width: 100%; display: block;" data-holder-rendered="true">
+                <div class="card-body">
+                  <p class="card-text">{{ title }}</p>
+                  <div class="justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>

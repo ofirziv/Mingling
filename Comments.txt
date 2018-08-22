@@ -1,0 +1,28 @@
+22.8.18
+-------
+finished:
+%%%%%%%%%
+1. Description page + image uploading (done - only needs redecoration)
+2. Multi images retrieving from DB to the album + connection to Mingler database.
+
+TODO:
+%%%%%
+1. Change the registration process to be email unique only (without username uniqueness)
+2. Add a image cropper.
+3. Add user data to the album
+
+
+
+20.8.18
+-------
+Finished
+%%%%%%%%%%%%%%%
+- The app first created
+- Gallery established (using Album), Doesn't linked yet
+- Registaration process is working (including activation emails)
+
+TODO
+%%%%%
+1. Change the registration process to be email unique only (without username uniqueness)
+2. Create a user edit page (add description, image, etc)
+3. Add links from the gallery to the users

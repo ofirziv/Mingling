@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+
+<style>
+{% block style %}
+
+{% endblock %}
+</style>
+
+
+{% block content %}
+<div class="row">
+<div class="col-4" style=>
+	<p class="lead text-align-center"> Build with Django &amp; Bootstap </p>
+</div>
+<div class="col-4">
+	<p class="lead text-align-center"> A &amp; B </p>
+</div>
+<div class="col-4">
+	<p class="lead text-align-center"> C &amp; D </p>
+</div>
+
+  	
+	</div>
+</div>
+
+{% include 'dynamic_gallery.html' %}
+
+
+{% endblock %}
