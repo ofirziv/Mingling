@@ -2,31 +2,73 @@
 {% load crispy_forms_tags %}
 {% load staticfiles %}
 
+<style>
+{% block style %}
 
+{% endblock %}
+</style>
 
 {% block content %}
- 
-<h1> {{ title }} </h1>
+ <div class="row">
+		<div class="col-6 offset-md-3">
+			<h1> {{ title }} </h1><br>
+		</div>
+</div>
 
 
 <form method='POST' action="" enctype="multipart/form-data"> {% csrf_token %}
 	{% if finished == "no"%}
+		{% if img_path != None or ing_path == 'no-img.jpg' %}
+		<div class="row">
+			<div class="col-4 offset-md-4">
+		        <img class="btn card-img-top mx-lg" src="{% static '' %}{{ img_path }}" style="height: 100%; width: 100%; display: block;" data-holder-rendered="true">
+		                
+		    </div>
+		</div>
+		{% endif %}
+	{% endif %}
+
+	<!-- {{ form|crispy }} -->
+
 	<div class="row">
-		<div class="col-4 offset-md-4">
-	        <img class="btn card-img-top mx-lg" src="{% static '' %}{{ img_path }}" style="height: 100%; width: 100%; display: block;" data-holder-rendered="true">
-	                
-	    </div>
+		<div class="col-6 offset-md-3">
+			<h4>Full name</h4>
+			{{ form.full_name }}<br><br>
+
+			<h4>Image</h4>
+			{{ form.img_path }}<br><br>
+
+			<h4>Personal hashtags</h4>
+			{{ form.personal_hashtag }}<br><br>
+
+			<input class='btn btn-secondary' type='submit' value='Add Personal Hashtag' name='_personal_hashtag_add'/><br><br>
+
+			{% for personal_hashtag in personal_hashtags %}
+				<div class="chip pink lighten-4">
+				    Tag 220
+				    <i class="close fa fa-times"></i>
+				</div>
+				<span class="badge badge-pill pink"> {{ personal_hashtag }}</span>
+			{% endfor %}
+
+			<h4>Personal Description</h4>
+			{{ form.description }}<br><br>
+
+			<h4>Looking for hashtags</h4>
+			{{ form.looking_hashtag }}<br><br>
+
+			<input class='btn btn-secondary' type='submit' value='Add "Looking for" Hashtag' name='_looking_for_hashtag_add'/><br><br>
+
+			{% if finished == "no"%}
+			<input class='btn btn-primary' type='submit' value='Submit Changes' name='_submit_all'/>
+			{% endif %}
+		</div>
 	</div>
-	{% endif %}
-
-	{{ form|crispy }}
-
-	{% if finished == "no"%}
-	<input class='btn btn-primary' type='submit' value='Submit Changes'/>
-	{% endif %}
 
 
 </form>
+<br><br>
+
 {{ form.media }}
 {% endblock %}
 

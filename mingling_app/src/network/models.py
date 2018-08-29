@@ -20,8 +20,8 @@ class PersonalHashtag(models.Model):
 class Mingler(models.Model): 
 	full_name = models.CharField(max_length=120, default='Anna')
 	img_path = models.ImageField(upload_to='media/', default = 'pic_folder/None/no-img.jpg')
-	my_hashtags = models.TextField(blank=False, null=True)
-	looking_for_hashtags = models.TextField(blank=False, null=True) # TODO: Need to change it
+	my_hashtags = models.TextField(blank=False, null=True, default='')
+	looking_for_hashtags = models.TextField(blank=False, null=True, default='') # TODO: Need to change it
 	description = models.TextField(max_length=2000, blank=True, null=True)
 	email = models.CharField(max_length=120, blank=False, default='none')
 	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)

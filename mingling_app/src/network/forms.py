@@ -3,7 +3,6 @@ from .models import Mingler, PersonalHashtag
 from registration.forms import RegistrationFormUniqueEmail
 from django.contrib.auth.forms import UserCreationForm
 from dal import autocomplete
-from .choices import TAGS_CHOICES
 
 
 class ContactForm(forms.Form):
@@ -29,9 +28,6 @@ class ContactForm(forms.Form):
 # 		full_name = self.cleaned_data.get('full_name')
 # 		return full_name
 
-def get_choice_list():
-    # all cites to used as chice list
-    return ['Pune', 'Patna', 'Mumbai', 'Delhi']
 
 # class PersonalHashtagForm(forms.ModelForm):
 # 	# tag = forms.ModelChoiceField(queryset=PersonalHashtag.objects.all(), widget=autocomplete.ModelSelect2(url='PersonalHashtag-autocomplete'))
@@ -55,10 +51,10 @@ class MinglerForm(forms.ModelForm):
  	#        widget=autocomplete.ModelSelect2(url='PersonalHashtag-autocomplete'))
 	personal_hashtag = forms.ModelChoiceField(
 		queryset=PersonalHashtag.objects.all(),
-		widget=autocomplete.ModelSelect2(url='PersonalHashtag-autocomplete'))
+		widget=autocomplete.ModelSelect2(url='PersonalHashtag-autocomplete'), required=False)
 	looking_hashtag = forms.ModelChoiceField(
 		queryset=PersonalHashtag.objects.all(),
-        widget=autocomplete.ModelSelect2(url='PersonalHashtag-autocomplete'))
+        widget=autocomplete.ModelSelect2(url='PersonalHashtag-autocomplete'), required=False)
 
 	class Meta:
 		model = Mingler

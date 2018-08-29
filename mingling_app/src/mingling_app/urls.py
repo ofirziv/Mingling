@@ -14,4 +14,6 @@ urlpatterns = [
 	# url(r'^test/$', network_views.test, name='test'),
 	url(r'^tags-autocomplete/$', network_views.PersonalHashtagAutocomplete.as_view(), 
 		name='PersonalHashtag-autocomplete'),
+	url(r'^initialize_mingler/', network_views.initialize_mingler, name='initialize_mingler'),
+
 ]

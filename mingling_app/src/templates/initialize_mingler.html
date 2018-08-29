@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+<style>
+{% block style %}
+
+{% endblock %}
+</style>
+
+
+{% block content %}
+<form method='POST' action="{% url next_page %}"> {% csrf_token %}
+	<br><br>
+	<div class="row">
+		<div class="mx-auto text-center">
+			<h6> Thanks for register to Ming & Ling. Press Continue to edit your profile and start to Mingle!</h6>
+			<br>
+			<input class='btn btn-primary' type='submit' value='Continue'/><br><br>
+		</div>
+	</div>
+</form>
+
+{% endblock %}

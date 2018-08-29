@@ -24,6 +24,20 @@ def home(request):
 	}
 	return render(request, 'home.html', context)
 
+
+def initialize_mingler(request):
+	form = MinglerForm()
+	print('Creating a Mingler!!!!')
+	instance = form.save(commit=False)
+	instance.email = request.user.email
+	instance.save()
+	context = {
+		# "next_page": 'home'
+		"next_page": 'user_page'
+	}
+	return render(request, 'initialize_mingler.html', context)
+
+
 @login_required
 def user_page(request):
 	title = 'Mingler Description'
@@ -38,18 +52,16 @@ def user_page(request):
 		"form": form,
 		"email": request.user.email,
 		"img_path": instance.img_path,
-		"finished": "no"
-	}
+		"personal_hashtags": instance.my_hashtags.split(',')
+		}
 	except:
 		form = MinglerForm(request.POST or None, request.FILES or None)
 		context = {
 		"title": title,
 		"form": form,
 		"email": request.user.email,
-		"finished": "no"
-	}
+		}
 
-	print(form.is_valid())
 	if form.is_valid():
 		print('Valid!!!')
 		title = "Thank you!"
@@ -59,35 +71,45 @@ def user_page(request):
 			instance = form.save(commit=False)
 			instance.full_name = form.cleaned_data.get("full_name", '')
 			instance.img_path = form.cleaned_data.get("img_path", '')
-			instance.my_hashtags = form.cleaned_data.get("my_hashtags" ,'')
-			instance.looking_for_hashtags = form.cleaned_data.get("looking_for_hashtags", '')
 			instance.description = form.cleaned_data.get("description", '')
 			instance.email = request.user.email
 			instance.save()
 		else:
 			instance = Mingler.objects.get(email=request.user.email)
-			print('Updating!!!!')
-			instance.full_name = form.cleaned_data.get("full_name", '')
-			instance.img_path = form.cleaned_data.get("img_path", '')
+			if '_submit_all' in request.POST:
+				print('Updating!!!!')
+				instance.full_name = form.cleaned_data.get("full_name", '')
+				instance.img_path = form.cleaned_data.get("img_path", '')
+				instance.description = form.cleaned_data.get("description", '')
+				print(instance.img_path)
+				if instance.img_path == 'no-img.jpg':
+					print('partially')
+					instance.save(update_fields=["full_name", "description"])
+				else:
+					print('full')
+					instance.save()
+			if '_personal_hashtag_add' in request.POST:
+				personal_tag = form.cleaned_data.get("personal_hashtag" ,'')
+				personal_hashtags = instance.my_hashtags.split(',')
+				if personal_tag != None and not personal_tag.tag in personal_hashtags:
+					if personal_hashtags == ['']:
+						instance.my_hashtags = personal_tag.tag
+					else:
+						instance.my_hashtags = '{},{}'.format(instance.my_hashtags, personal_tag.tag)
+					instance.save(update_fields=["my_hashtags"])
 
-			personal_tag = form.cleaned_data.get("personal_hashtag" ,'').tag
-			personal_hashtags = instance.my_hashtags.split(',')
-			if not personal_tag in personal_hashtags and personal_tag != '':
-				instance.my_hashtags = '{},{}'.format(instance.my_hashtags, personal_tag)
+			if '_looking_for_hashtag_add' in request.POST:
+				looking_tag = form.cleaned_data.get("looking_hashtag", '')
+				looking_hashtags = instance.looking_for_hashtags.split(',')
+				if looking_tag != None and not looking_tag.tag in looking_hashtags:
+					if looking_hashtags == ['']:
+						instance.looking_for_hashtags = looking_tag.tag
+					else:
+						instance.looking_for_hashtags = '{},{}'.format(instance.looking_for_hashtags, looking_tag.tag)
+					instance.save(update_fields=["looking_for_hashtags"])
+					context['looking_for_hashtags'] = instance.looking_for_hashtags.split(',')
 
-			looking_tag = form.cleaned_data.get("looking_hashtag", '').tag
-			looking_hashtags = instance.looking_for_hashtags.split(',')
-			if not looking_tag in looking_hashtags and looking_tag != '':
-				instance.looking_for_hashtags = '{},{}'.format(instance.looking_for_hashtags, looking_tag)
 
-			instance.description = form.cleaned_data.get("description", '')
-			print(instance.img_path)
-			if instance.img_path == 'no-img.jpg':
-				print('partially')
-				instance.save(update_fields=["full_name", "my_hashtags", "looking_for_hashtags", "description"])
-			else:
-				print('full')
-				instance.save()
 
 		# context = {
 		# 	"title": title,

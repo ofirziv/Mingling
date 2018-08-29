@@ -6,11 +6,14 @@ Finished:
 2. Added a hashtags multi-choice label + search
 3. Editing Working perfectly!
 4. Image updating bug fixed
+5. Added connection between user to hashtags
+6. Creating a page 'after activation' that connects to the description page
 
 
 TODO:
 %%%%%
 1. Add an image cropper
+2. Add tags bootstrap labels (+delete option)
 
 
 
