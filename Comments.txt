@@ -1,6 +1,23 @@
+28.8.18
+-------
+Finished:
+%%%%%%%%%
+1. Added a limited access to 'user_page' for login only users
+2. Update page - works! (Include images)
+3. Added a user data to the album
+
+
+TODO:
+%%%%%
+1. Add a default name in the user_page username label
+2. Add an image cropper
+3. Handle the bug of the image updating
+
+
+
 22.8.18
 -------
-finished:
+Finished:
 %%%%%%%%%
 1. Description page + image uploading (done - only needs redecoration)
 2. Multi images retrieving from DB to the album + connection to Mingler database.

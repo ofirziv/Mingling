@@ -152,6 +152,7 @@ REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 # LOGIN_REDIRECT_URL = '/accounts/register/'
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
-# REGISTRATION_FORM = 'registration.forms.RegistrationFormUniqueEmail'
+
+##### Turn it on when want to get a unique email only
 REGISTRATION_FORM = 'registration.forms.RegistrationFormUniqueEmail'
 

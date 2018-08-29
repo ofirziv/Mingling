@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load staticfiles %}
 
 
 
@@ -8,12 +9,21 @@
 <h1> {{ title }} </h1>
 
 
-<form method='POST' action="{% url 'user_page' %}" enctype="multipart/form-data"> {% csrf_token %}
+<form method='POST' action="" enctype="multipart/form-data"> {% csrf_token %}
+	{% if finished == "no"%}
+	<div class="row">
+		<div class="col-4 offset-md-4">
+	        <img class="btn card-img-top mx-lg" src="{% static '' %}{{ img_path }}" style="height: 100%; width: 100%; display: block;" data-holder-rendered="true">
+	                
+	    </div>
+	</div>
+	{% endif %}
 
 	{{ form|crispy }}
 
-	
+	{% if finished == "no"%}
 	<input class='btn btn-primary' type='submit' value='Submit Changes'/>
+	{% endif %}
 
 
 </form>
