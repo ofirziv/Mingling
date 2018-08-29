@@ -11,5 +11,7 @@ urlpatterns = [
 	url(r'^user_page/$', network_views.user_page, name='user_page'),
 	url(r'^admin/', admin.site.urls),
 	url(r'^accounts/', include('registration.backends.default.urls')),
-
+	# url(r'^test/$', network_views.test, name='test'),
+	url(r'^tags-autocomplete/$', network_views.PersonalHashtagAutocomplete.as_view(), 
+		name='PersonalHashtag-autocomplete'),
 ]

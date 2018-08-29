@@ -39,7 +39,6 @@ EMAIL_USE_TLS = True
 INSTALLED_APPS = [
     'registration',
     # Django apps
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sites',
@@ -48,6 +47,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Third-party apps
     'crispy_forms',
+    'dal',
+    'dal_select2',
+    # Admin
+    'django.contrib.admin',
     # My apps
     'network',
 ]

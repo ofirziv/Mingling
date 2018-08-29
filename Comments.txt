@@ -1,3 +1,21 @@
+29.8.18
+-------
+Finished:
+%%%%%%%%%
+1. Added default (initial) values to each field in the 'user_page'
+2. Added a hashtags multi-choice label + search
+3. Editing Working perfectly!
+4. Image updating bug fixed
+
+
+TODO:
+%%%%%
+1. Add an image cropper
+
+
+
+
+
 28.8.18
 -------
 Finished:
